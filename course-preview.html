@@ -419,7 +419,7 @@ footer {
     <p>Let's talk about what you need and how I can help.</p>
   </div>
   <div class="cta-actions">
-    <a href="mailto:ancaralucarusu@gmail.com" class="cta-btn">✉ Get in touch</a>
+    <a href="/cdn-cgi/l/email-protection#a9c8c7cac8dbc8c5dccac8dbdcdadce9cec4c8c0c587cac6c4" class="cta-btn">✉ Get in touch</a>
     <a href="https://ancaralucarusu.github.io" class="cta-btn-outline">← Back to portfolio</a>
   </div>
 </div>
@@ -429,17 +429,9 @@ footer {
   <p class="footer-copy">&copy; 2025 · E-Learning & Instructional Designer · Cluj-Napoca</p>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   const reveals = document.querySelectorAll(".reveal");
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add("visible"), i * 50);
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  reveals.forEach(el => io.observe(el));
-</script>
-</body>
-</html>
+        setTimeout(() => entry.target.classList.add("visible"),
