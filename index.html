@@ -405,7 +405,7 @@ footer{background:var(--c-dark-bg);border-top:1px solid rgba(255,255,255,0.06);p
       </div>
       <div class="port-card-actions">
         <a href="https://ancaralucarusu.github.io/course-preview.html" class="port-btn-primary">View case study &rarr;</a>
-        <a href="https://ancaralucarusu.github.io/course/content/index.html" target="_blank" rel="noopener" class="port-btn-ghost">Launch course &#x2197;</a>
+        <a href="https://ancaralucarusu.github.io/course/content/index.html" target="_blank" class="port-btn-ghost">Launch course &#x2197;</a>
       </div>
     </div>
   </div>
@@ -445,7 +445,7 @@ footer{background:var(--c-dark-bg);border-top:1px solid rgba(255,255,255,0.06);p
     <h2 id="contact-heading" class="reveal">Ready to build learning<br>that <em>actually works?</em></h2>
     <p class="contact-tagline reveal">Whether you need an e-learning module, a learning strategy, or a collaborator who understands both people and design &mdash; I&rsquo;d love to connect.</p>
     <div class="contact-links reveal">
-      <a href="/cdn-cgi/l/email-protection#4c2d222f2d3e2d20392f2d3e393f390c2b212d2520622f2321" class="contact-link"><span class="cl-icon">✉️</span> <span class="__cf_email__" data-cfemail="0a6b64696b786b667f696b787f797f4a6d676b636624696567">[email&#160;protected]</span></a>
+      <a href="mailto:ancaralucarusu@gmail.com" class="contact-link"><span class="cl-icon">✉️</span> ancaralucarusu@gmail.com</a>
       <a href="https://linkedin.com/in/ancaralucarusu" target="_blank" rel="noopener" class="contact-link"><span class="cl-icon">💼</span> linkedin.com/in/ancaralucarusu</a>
       <a href="tel:+40749027116" class="contact-link"><span class="cl-icon">📞</span> +40 749 027 116</a>
     </div>
@@ -453,7 +453,7 @@ footer{background:var(--c-dark-bg);border-top:1px solid rgba(255,255,255,0.06);p
   <div class="contact-cta-box reveal">
     <p class="ccb-headline">Looking for a designer who <em>truly gets</em> how people learn?</p>
     <p class="ccb-body">I bring something rare to e-learning design: the psychology, the coaching intelligence, and the real-world L&amp;D experience to design learning that changes behaviour &mdash; not just knowledge scores.</p>
-    <a href="/cdn-cgi/l/email-protection#3958575a584b58554c5a584b4c4a4c795e54585055175a5654" class="ccb-action">Send me a message &rarr;</a>
+    <a href="mailto:ancaralucarusu@gmail.com" class="ccb-action">Send me a message &rarr;</a>
   </div>
 </section>
 
@@ -465,7 +465,7 @@ footer{background:var(--c-dark-bg);border-top:1px solid rgba(255,255,255,0.06);p
   <a href="https://linkedin.com/in/ancaralucarusu" class="footer-link" target="_blank" rel="noopener">LinkedIn &rarr;</a>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   const nav = document.getElementById("nav");
   window.addEventListener("scroll", () => { nav.classList.toggle("scrolled", window.scrollY > 20); }, { passive: true });
   const sections = document.querySelectorAll("section[id]");
@@ -478,4 +478,14 @@ footer{background:var(--c-dark-bg);border-top:1px solid rgba(255,255,255,0.06);p
   window.addEventListener("scroll", onScroll, { passive: true });
   const reveals = document.querySelectorAll(".reveal");
   const io = new IntersectionObserver((entries) => {
-    entries.forEach((
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add("visible"), i * 50);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
