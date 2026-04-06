@@ -1,29 +1,437 @@
-<!doctype html>
-<!-- 
-course package version: 3XzcuFrg
-rise_frontend sha: cae6d0daabaee90b10c3e80d0be9525b11b8b0fc
-learn_distribution_frontend sha: 47b130709680574c6dcb5cbdaf7583ad84932a20
-mondrian sha: 6e6b74e29d9e15a46490cd4df89e40fc2f241f47
-sandbox sha: 38e0c7bca6fd6bed198d58039339932c1fb4afbe
- -->
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Essential Career Coaching Skills for Peer Support - Demo</title>
-    
-      <link rel="stylesheet" href="lib/sandbox/4adfab46.css">
-    
-    <script type="application/json" id="__CONFIG__">
-      {"remoteManifest":{"learn_distribution_frontend":{".js":["learn_dist/entry.js"]},"mondrian":{".js":["mondrian/entry.js"]}},"assetTargetPrefixes":{"media":"assets","font":"lib/fonts"}}
-    </script>
-  <script src="lib/dist/4215d215.js"></script></head>
-  <body>
-    <div id="app"></div>
-    
-      <script src="lib/rise/e246fada.js"></script>
-    
-      <script src="lib/sandbox/c77685df.js"></script>
-    
-  </body>
-</html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Essential Career Coaching Skills for Peer Support — Anca Tomșa Rusu</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c-bg:        #F9F7F4;
+  --c-surface:   #FFFFFF;
+  --c-dark:      #1E1E1E;
+  --c-mid:       #6B6560;
+  --c-rule:      #E8E3DC;
+  --c-sage:      #5C7E6E;
+  --c-sage-soft: #EBF2EE;
+  --c-terra:     #C4623A;
+  --c-terra-soft:#F7EDE8;
+  --c-dark-bg:   #1E2420;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.10);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: "Plus Jakarta Sans", sans-serif; background: var(--c-bg); color: var(--c-dark); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 64px; display: flex; align-items: center; justify-content: space-between;
+  padding: 0 4rem;
+  background: rgba(249,247,244,0.95); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--c-rule);
+}
+.nav-logo { font-family: "Lora", serif; font-size: 1.1rem; font-weight: 600; color: var(--c-dark); text-decoration: none; }
+.nav-logo span { color: var(--c-terra); }
+.nav-back {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.8rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--c-mid); text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-back:hover { color: var(--c-terra); }
+.nav-back::before { content: "←"; font-size: 1rem; }
+
+/* HERO */
+.course-hero {
+  padding: 100px 4rem 4rem;
+  background: var(--c-dark-bg);
+  position: relative; overflow: hidden;
+}
+.course-hero::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 50% 60% at 80% 50%, rgba(92,126,110,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-inner { max-width: 800px; position: relative; z-index: 1; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(92,126,110,0.2); border: 1px solid rgba(92,126,110,0.3);
+  color: #8BB5A3; border-radius: 2rem;
+  font-family: "Space Mono", monospace; font-size: 0.7rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.4rem 1rem; margin-bottom: 1.5rem;
+}
+.hero-badge .dot { width: 6px; height: 6px; background: #8BB5A3; border-radius: 50%; }
+.course-hero h1 {
+  font-family: "Lora", serif;
+  font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; line-height: 1.15;
+  letter-spacing: -0.02em; color: white;
+  margin-bottom: 1.2rem;
+}
+.course-hero h1 em { font-style: italic; color: #D4A090; }
+.course-tagline { font-size: 1.05rem; color: rgba(255,255,255,0.6); font-weight: 300; line-height: 1.7; margin-bottom: 2.5rem; max-width: 580px; }
+
+.hero-meta { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-bottom: 2.5rem; }
+.meta-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; color: rgba(255,255,255,0.55); }
+.meta-item strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+
+.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-launch {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--c-terra); color: white;
+  font-size: 0.9rem; font-weight: 600;
+  padding: 14px 28px; border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(196,98,58,0.4);
+  transition: background 0.2s, transform 0.2s;
+}
+.btn-launch:hover { background: #b0562f; transform: translateY(-2px); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: transparent; color: rgba(255,255,255,0.75);
+  font-size: 0.9rem; font-weight: 500;
+  padding: 14px 24px; border-radius: 9999px;
+  text-decoration: none; border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.2s;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,0.5); color: white; }
+
+/* COURSE PREVIEW FRAME */
+
+/* CONTENT SECTIONS */
+.main-wrap { max-width: 1100px; margin: 0 auto; padding: 0 4rem; }
+section.content-section { padding: 5rem 0; border-bottom: 1px solid var(--c-rule); }
+section.content-section:last-child { border-bottom: none; }
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: "Space Mono", monospace;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--c-sage); margin-bottom: 0.75rem;
+}
+.eyebrow::before { content: ""; width: 18px; height: 2px; background: var(--c-sage); border-radius: 2px; }
+h2 {
+  font-family: "Lora", serif;
+  font-size: clamp(1.7rem, 2.5vw, 2.2rem); font-weight: 700; line-height: 1.2;
+  letter-spacing: -0.02em; color: var(--c-dark); margin-bottom: 1rem;
+}
+h2 em { font-style: italic; color: var(--c-terra); }
+.section-intro { font-size: 1rem; color: var(--c-mid); font-weight: 300; line-height: 1.8; max-width: 600px; margin-bottom: 2.5rem; }
+
+/* Lesson cards */
+.lessons-grid { display: flex; flex-direction: column; gap: 1rem; }
+.lesson-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-rule);
+  border-radius: 16px; padding: 1.5rem 2rem;
+  display: grid; grid-template-columns: 56px 1fr;
+  gap: 1.5rem; align-items: start;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s;
+}
+.lesson-card:hover { transform: translateX(6px); box-shadow: var(--shadow-md); border-color: var(--c-sage); }
+.lesson-num {
+  width: 56px; height: 56px; border-radius: 14px;
+  background: var(--c-sage-soft);
+  display: flex; align-items: center; justify-content: center;
+  font-family: "Space Mono", monospace; font-size: 0.8rem; font-weight: 700;
+  color: var(--c-sage); flex-shrink: 0;
+}
+.lesson-title { font-family: "Lora", serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--c-dark); }
+.lesson-desc { font-size: 0.85rem; color: var(--c-mid); font-weight: 300; line-height: 1.65; margin-bottom: 0.8rem; }
+.lesson-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.lesson-pill {
+  font-size: 0.72rem; font-weight: 500; padding: 3px 10px; border-radius: 2rem;
+  background: var(--c-bg); border: 1px solid var(--c-rule); color: var(--c-mid);
+}
+
+/* Design decisions */
+.decisions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.decision-card {
+  background: var(--c-surface); border: 1px solid var(--c-rule);
+  border-radius: 14px; padding: 1.5rem;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s;
+}
+.decision-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.decision-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+.decision-card h3 { font-family: "Lora", serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--c-dark); }
+.decision-card p { font-size: 0.83rem; line-height: 1.7; color: var(--c-mid); font-weight: 300; }
+
+/* What this shows */
+.evidence-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.evidence-item {
+  display: flex; gap: 0.75rem; align-items: flex-start;
+  background: var(--c-surface); border: 1px solid var(--c-rule);
+  border-radius: 12px; padding: 1rem 1.2rem;
+}
+.evidence-check {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--c-sage-soft); color: var(--c-sage);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.7rem; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+}
+.evidence-item p { font-size: 0.85rem; line-height: 1.6; color: var(--c-mid); font-weight: 400; }
+.evidence-item p strong { color: var(--c-dark); font-weight: 600; }
+
+/* CTA strip */
+.cta-strip {
+  background: var(--c-dark-bg); padding: 4rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;
+}
+.cta-strip h3 { font-family: "Lora", serif; font-size: 1.5rem; font-weight: 600; color: white; line-height: 1.3; }
+.cta-strip h3 em { font-style: italic; color: #D4A090; }
+.cta-strip p { font-size: 0.9rem; color: rgba(255,255,255,0.5); font-weight: 300; margin-top: 0.4rem; }
+.cta-actions { display: flex; gap: 1rem; flex-shrink: 0; flex-wrap: wrap; }
+.cta-btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: var(--c-terra); color: white;
+  font-size: 0.88rem; font-weight: 600;
+  padding: 13px 24px; border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(196,98,58,0.35);
+  transition: background 0.2s, transform 0.2s;
+}
+.cta-btn:hover { background: #b0562f; transform: translateY(-2px); }
+.cta-btn-outline {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  background: transparent; color: rgba(255,255,255,0.75);
+  font-size: 0.88rem; font-weight: 500;
+  padding: 13px 20px; border-radius: 9999px;
+  text-decoration: none; border: 1px solid rgba(255,255,255,0.2);
+  transition: all 0.2s;
+}
+.cta-btn-outline:hover { border-color: rgba(255,255,255,0.5); color: white; }
+
+/* Footer */
+footer {
+  background: var(--c-dark-bg); border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 1.5rem 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.footer-name { font-family: "Lora", serif; font-size: 0.95rem; font-weight: 600; color: white; }
+.footer-name span { color: #D4A090; }
+.footer-copy { font-family: "Space Mono", monospace; font-size: 9px; color: rgba(255,255,255,0.3); letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.55s var(--ease), transform 0.55s var(--ease); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 900px) {
+  nav, .course-hero, .preview-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .main-wrap { padding: 0 1.5rem; }
+  .decisions-grid { grid-template-columns: 1fr; }
+  .evidence-list { grid-template-columns: 1fr; }
+  .cta-strip { padding: 2.5rem 1.5rem; }
+  footer { padding: 1.5rem; }
+  .course-iframe { height: 420px; }
+}
+@media (max-width: 600px) {
+  .lesson-card { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Anca <span>Tomșa Rusu</span></a>
+  <a href="index.html#portfolio" class="nav-back">Back to portfolio</a>
+</nav>
+
+<!-- HERO -->
+<div class="course-hero">
+  <div class="hero-inner">
+    <div class="hero-badge"><span class="dot"></span> Portfolio Project — Articulate Rise</div>
+    <h1>Essential Career Coaching Skills<br>for <em>Peer Support</em></h1>
+    <p class="course-tagline">A 5-module e-learning course designed to equip peers with evidence-based coaching skills — combining psychology, practical frameworks, and interactive learning design.</p>
+    <div class="hero-meta">
+      <div class="meta-item">🛠 <strong>Tool:</strong> Articulate Rise</div>
+      <div class="meta-item">📚 <strong>Modules:</strong> 5 lessons</div>
+      <div class="meta-item">🎯 <strong>Audience:</strong> Peer support professionals</div>
+      <div class="meta-item">🧠 <strong>Approach:</strong> Scenario-based, reflective</div>
+    </div>
+    <div class="hero-actions">
+      <a href="https://share.eu.articulate.com/iaMfXiYXANjaIj-VzVO3K" target="_blank" rel="noopener" class="btn-launch">▶ Launch course</a>
+      <a href="#overview" class="btn-ghost">See design decisions ↓</a>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="main-wrap">
+
+  <!-- OVERVIEW -->
+  <section class="content-section" id="overview">
+    <p class="eyebrow reveal">Course overview</p>
+    <h2 class="reveal">What this course <em>teaches</em></h2>
+    <p class="section-intro reveal">Designed for professionals who support peers in their career journeys, this course builds practical coaching competencies grounded in ICF coaching principles, positive psychology, and structured decision-making frameworks.</p>
+
+    <div class="lessons-grid reveal">
+      <div class="lesson-card">
+        <div class="lesson-num">01</div>
+        <div>
+          <div class="lesson-title">Foundations of Peer Career Coaching</div>
+          <div class="lesson-desc">Introduces the coaching mindset — curiosity, non-judgment, and non-directiveness. Distinguishes coaching from mentoring, advising, and training through interactive sorting activities. Covers active listening and presence, including the three levels of listening.</div>
+          <div class="lesson-pills">
+            <span class="lesson-pill">Coaching vs Mentoring</span>
+            <span class="lesson-pill">Active Listening</span>
+            <span class="lesson-pill">Coaching Mindset</span>
+            <span class="lesson-pill">Trust Building</span>
+          </div>
+        </div>
+      </div>
+      <div class="lesson-card">
+        <div class="lesson-num">02</div>
+        <div>
+          <div class="lesson-title">Expanding Awareness: Exploration and Powerful Questions</div>
+          <div class="lesson-desc">Teaches how to formulate open, powerful questions that expand awareness. Introduces the Job Satisfaction Wheel as a practical exploration tool. Covers the Awareness Expansion Process and supportive feedback techniques through real-world scenarios.</div>
+          <div class="lesson-pills">
+            <span class="lesson-pill">Powerful Questions</span>
+            <span class="lesson-pill">Job Satisfaction Wheel</span>
+            <span class="lesson-pill">Perspective Expansion</span>
+            <span class="lesson-pill">Feedback</span>
+          </div>
+        </div>
+      </div>
+      <div class="lesson-card">
+        <div class="lesson-num">03</div>
+        <div>
+          <div class="lesson-title">Clarifying Direction: Values, Strengths, and Goal Setting</div>
+          <div class="lesson-desc">Guides learners through the Direction-Setting Sequence — clarifying values, identifying strengths, and exploring interests. Uses a Venn Diagram to synthesise themes, then supports SMART goal setting with alignment between values and goals.</div>
+          <div class="lesson-pills">
+            <span class="lesson-pill">Values Discovery</span>
+            <span class="lesson-pill">Strengths Identification</span>
+            <span class="lesson-pill">SMART Goals</span>
+            <span class="lesson-pill">Direction Setting</span>
+          </div>
+        </div>
+      </div>
+      <div class="lesson-card">
+        <div class="lesson-num">04</div>
+        <div>
+          <div class="lesson-title">Decisions and Design: Choosing and Shaping the Path</div>
+          <div class="lesson-desc">Introduces structured career decision-making — from decision matrices to dilemma work. Explores Job Crafting as a tool for shaping roles, and co-creating actionable, accountable plans with a 5-step Action Planning framework.</div>
+          <div class="lesson-pills">
+            <span class="lesson-pill">Decision Matrix</span>
+            <span class="lesson-pill">Job Crafting</span>
+            <span class="lesson-pill">Action Planning</span>
+            <span class="lesson-pill">Accountability</span>
+          </div>
+        </div>
+      </div>
+      <div class="lesson-card">
+        <div class="lesson-num">05</div>
+        <div>
+          <div class="lesson-title">Action, Feedback, and Growth: Supporting Progress and Reflection</div>
+          <div class="lesson-desc">Focuses on sustaining growth through coaching-oriented feedback, accountability structures, and meaningful reflection. Uses flashcard activities, real-world scenarios, and Alex's continuous case study to bring concepts to life.</div>
+          <div class="lesson-pills">
+            <span class="lesson-pill">Growth Feedback</span>
+            <span class="lesson-pill">Accountability</span>
+            <span class="lesson-pill">Reflection</span>
+            <span class="lesson-pill">Identity Development</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN DECISIONS -->
+  <section class="content-section">
+    <p class="eyebrow reveal">Design decisions</p>
+    <h2 class="reveal">The instructional design <em>thinking</em> behind this course</h2>
+    <p class="section-intro reveal">Every design choice in this course was deliberate — grounded in learning psychology and built to close the gap between knowledge and real-world coaching practice.</p>
+    <div class="decisions-grid">
+      <div class="decision-card reveal">
+        <div class="decision-icon">🧵</div>
+        <h3>Continuous Case Study (Alex)</h3>
+        <p>A single protagonist — Alex — runs through all 5 modules. This narrative thread reduces cognitive load, builds emotional investment, and lets learners see how concepts connect across the full coaching journey, not just in isolation.</p>
+      </div>
+      <div class="decision-card reveal">
+        <div class="decision-icon">🔄</div>
+        <h3>Scenario-Based Practice</h3>
+        <p>Each module includes interactive scenarios where learners apply skills to real situations before being given feedback. This retrieval-practice approach — grounded in cognitive science — deepens retention far beyond passive reading.</p>
+      </div>
+      <div class="decision-card reveal">
+        <div class="decision-icon">🧠</div>
+        <h3>Psychology-Informed Sequencing</h3>
+        <p>The module order follows the natural arc of a coaching engagement: from mindset → awareness → direction → decision → growth. This mirrors real practice, making transfer to behaviour much more likely than a topic-by-topic structure.</p>
+      </div>
+      <div class="decision-card reveal">
+        <div class="decision-icon">🎯</div>
+        <h3>Practical Frameworks as Anchors</h3>
+        <p>The Job Satisfaction Wheel, Decision Matrix, and SMART goal framework give learners concrete tools they can use immediately — turning abstract coaching theory into tangible, repeatable practice.</p>
+      </div>
+      <div class="decision-card reveal">
+        <div class="decision-icon">✅</div>
+        <h3>Formative Assessment Throughout</h3>
+        <p>Knowledge checks are woven in at the end of every section — not just at the end of each module. This spaced retrieval approach strengthens long-term retention and gives learners immediate, low-stakes feedback on their understanding.</p>
+      </div>
+      <div class="decision-card reveal">
+        <div class="decision-icon">🌱</div>
+        <h3>Identity-Centred Reflection</h3>
+        <p>The final module goes beyond skills to address identity — helping learners see themselves as coaches. Research shows that professional identity is a stronger predictor of sustained behaviour change than knowledge or skill alone.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT THIS DEMONSTRATES -->
+  <section class="content-section">
+    <p class="eyebrow reveal">What this shows</p>
+    <h2 class="reveal">Instructional design <em>competencies</em> demonstrated</h2>
+    <p class="section-intro reveal">This course is evidence of a specific set of instructional design capabilities — here is how they map to what you see in the course.</p>
+    <div class="evidence-list">
+      <div class="evidence-item reveal">
+        <div class="evidence-check">✓</div>
+        <p><strong>Needs analysis applied:</strong> Course is tightly scoped to a real, specific audience — peer supporters — with learning objectives mapped directly to what they need to do, not just know.</p>
+      </div>
+      <div class="evidence-item reveal">
+        <div class="evidence-check">✓</div>
+        <p><strong>Backward design:</strong> Every module starts from the behaviour change outcome and works backward — the Alex case study exists specifically to bridge the knowing-doing gap.</p>
+      </div>
+      <div class="evidence-item reveal">
+        <div class="evidence-check">✓</div>
+        <p><strong>Learning psychology in practice:</strong> Cognitive load managed through progressive disclosure; spaced retrieval through distributed knowledge checks; motivation maintained through narrative continuity.</p>
+      </div>
+      <div class="evidence-item reveal">
+        <div class="evidence-check">✓</div>
+        <p><strong>Articulate Rise proficiency:</strong> Effective use of Rise blocks — flashcards, scenarios, sorting activities, Venn diagrams, and knowledge checks — chosen for pedagogical fit, not decoration.</p>
+      </div>
+      <div class="evidence-item reveal">
+        <div class="evidence-check">✓</div>
+        <p><strong>SME depth:</strong> The content reflects genuine expertise in ICF coaching methodology, positive psychology, and career development frameworks — not surface-level summaries.</p>
+      </div>
+      <div class="evidence-item reveal">
+        <div class="evidence-check">✓</div>
+        <p><strong>Learner-centred tone:</strong> Language is warm, direct, and respectful throughout — written for adult professionals, not generic corporate audiences.</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <div>
+    <h3>Interested in working<br>together on a <em>learning project?</em></h3>
+    <p>Let's talk about what you need and how I can help.</p>
+  </div>
+  <div class="cta-actions">
+    <a href="/cdn-cgi/l/email-protection#dfbeb1bcbeadbeb3aabcbeadaaacaa9fb8b2beb6b3f1bcb0b2" class="cta-btn">✉ Get in touch</a>
+    <a href="index.html" class="cta-btn-outline">← Back to portfolio</a>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-name">Anca <span>Tomșa Rusu</span></div>
+  <p class="footer-copy">&copy; 2025 · E-Learning & Instructional Designer · Cluj-Napoca</p>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const reveals = document.querySelectorAll(".reveal");
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add("visible"),
