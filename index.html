@@ -593,6 +593,91 @@ footer {
   .skills-grid { grid-template-columns: 1fr; }
   .cert-grid { grid-template-columns: 1fr; }
 }
+
+  /* ── PORTFOLIO CARD ── */
+  .port-card {
+    background: var(--c-surface); border: 1px solid var(--c-rule);
+    border-radius: var(--r-xl); overflow: hidden;
+    display: grid; grid-template-columns: 1fr 1.1fr;
+    box-shadow: var(--shadow-md);
+    transition: box-shadow var(--dur) var(--ease);
+    margin-bottom: var(--sp-2);
+  }
+  .port-card:hover { box-shadow: var(--shadow-lg); }
+  .port-card-visual {
+    background: var(--c-dark-bg);
+    padding: var(--sp-5); display: flex; flex-direction: column; gap: var(--sp-3);
+    position: relative; overflow: hidden;
+  }
+  .port-card-visual::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 30% 70%, rgba(92,126,110,0.2) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .port-card-tag {
+    font-family: "Space Mono", monospace; font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: #8BB5A3; background: rgba(92,126,110,0.15);
+    border: 1px solid rgba(92,126,110,0.25);
+    padding: 5px 12px; border-radius: var(--r-full);
+    width: fit-content;
+  }
+  .port-modules { display: flex; flex-direction: column; gap: 8px; position: relative; z-index: 1; }
+  .port-module-item {
+    display: flex; align-items: center; gap: 10px;
+    font-size: var(--t-sm); color: rgba(255,255,255,0.7); font-weight: 300;
+  }
+  .pmi-num {
+    font-family: "Space Mono", monospace; font-size: 10px; font-weight: 700;
+    color: var(--c-terra); background: rgba(196,98,58,0.15);
+    padding: 2px 7px; border-radius: var(--r-full); flex-shrink: 0;
+  }
+  .port-card-content { padding: var(--sp-5) var(--sp-6); display: flex; flex-direction: column; gap: var(--sp-3); }
+  .port-card-eyebrow {
+    font-family: "Space Mono", monospace; font-size: var(--t-xs);
+    font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--c-sage);
+  }
+  .port-card-title {
+    font-family: "Lora", serif; font-size: var(--t-2xl);
+    font-weight: 700; line-height: 1.2; letter-spacing: -0.01em;
+    color: var(--c-dark); margin: 0;
+  }
+  .port-card-desc { font-size: var(--t-sm); line-height: 1.75; color: var(--c-mid); font-weight: 300; }
+  .port-card-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .port-pill {
+    font-size: 11px; font-weight: 500; padding: 4px 12px;
+    border-radius: var(--r-full); background: var(--c-bg);
+    border: 1px solid var(--c-rule); color: var(--c-mid);
+  }
+  .port-card-actions { display: flex; gap: var(--sp-2); flex-wrap: wrap; margin-top: var(--sp-1); }
+  .port-btn-primary {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--c-terra); color: white;
+    font-size: var(--t-sm); font-weight: 600;
+    padding: 12px 22px; border-radius: var(--r-full);
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(196,98,58,0.3);
+    transition: background 0.2s, transform 0.2s;
+  }
+  .port-btn-primary:hover { background: #b0562f; transform: translateY(-2px); }
+  .port-btn-ghost {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: transparent; color: var(--c-dark);
+    font-size: var(--t-sm); font-weight: 500;
+    padding: 12px 18px; border-radius: var(--r-full);
+    text-decoration: none; border: 1.5px solid var(--c-rule);
+    transition: all 0.2s;
+  }
+  .port-btn-ghost:hover { border-color: var(--c-dark); transform: translateY(-2px); }
+
+  @media (max-width: 860px) {
+    .port-card { grid-template-columns: 1fr; }
+    .port-card-visual { padding: var(--sp-4); }
+    .port-card-content { padding: var(--sp-4); }
+  }
+
 </style>
 </head>
 <body>
@@ -963,16 +1048,48 @@ footer {
 <section id="portfolio" aria-labelledby="port-heading">
   <p class="section-eyebrow reveal">Portfolio</p>
   <h2 id="port-heading" class="reveal">Work samples &amp; <em>case studies</em>.</h2>
-  <div class="portfolio-placeholder reveal">
+  <p class="section-lead reveal">A growing collection of e-learning work — designed with real psychology and real learners in mind.</p>
+
+  <!-- Project card -->
+  <div class="port-card reveal">
+    <div class="port-card-visual">
+      <div class="port-card-tag">Articulate Rise &middot; 5 Modules</div>
+      <div class="port-modules">
+        <div class="port-module-item"><span class="pmi-num">01</span><span>Foundations of Peer Career Coaching</span></div>
+        <div class="port-module-item"><span class="pmi-num">02</span><span>Expanding Awareness &amp; Powerful Questions</span></div>
+        <div class="port-module-item"><span class="pmi-num">03</span><span>Clarifying Direction: Values &amp; Goal Setting</span></div>
+        <div class="port-module-item"><span class="pmi-num">04</span><span>Decisions and Design: Choosing the Path</span></div>
+        <div class="port-module-item"><span class="pmi-num">05</span><span>Action, Feedback, and Growth</span></div>
+      </div>
+    </div>
+    <div class="port-card-content">
+      <div class="port-card-eyebrow">Featured Course</div>
+      <h3 class="port-card-title">Essential Career Coaching Skills<br>for Peer Support</h3>
+      <p class="port-card-desc">A complete 5-module e-learning course equipping peer supporters with evidence-based career coaching skills. Designed from scratch in Articulate Rise — combining ICF coaching methodology, positive psychology frameworks, and interactive scenario-based learning around a continuous case study (Alex).</p>
+      <div class="port-card-pills">
+        <span class="port-pill">Scenario-based design</span>
+        <span class="port-pill">Continuous case study</span>
+        <span class="port-pill">Knowledge checks</span>
+        <span class="port-pill">ICF coaching methodology</span>
+        <span class="port-pill">Articulate Rise</span>
+      </div>
+      <div class="port-card-actions">
+        <a href="course-preview.html" class="port-btn-primary">View case study &amp; preview &rarr;</a>
+        <a href="course/content/index.html" target="_blank" class="port-btn-ghost">Launch course &#x2197;</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- More coming -->
+  <div class="portfolio-placeholder reveal" style="margin-top: 1.5rem;">
     <div class="pp-icon" aria-hidden="true">🚧</div>
-    <h3>Coming soon</h3>
-    <p>I&rsquo;m actively building my e-learning portfolio — sample modules, storyboards, and case studies that demonstrate my instructional design approach. In the meantime, let&rsquo;s talk about your project.</p>
+    <h3>More projects coming soon</h3>
+    <p>I&rsquo;m actively building more portfolio pieces — storyboards, scenario scripts, and blended learning designs. Check back soon or get in touch to discuss your project.</p>
     <div class="pp-tags">
-      <span class="pp-tag">📱 Microlearning modules</span>
       <span class="pp-tag">📋 Storyboards</span>
-      <span class="pp-tag">🎓 Scenario-based courses</span>
-      <span class="pp-tag">🔄 Blended programmes</span>
+      <span class="pp-tag">🎓 Blended programmes</span>
       <span class="pp-tag">💬 Coaching-led learning</span>
+      <span class="pp-tag">📊 Learning strategy</span>
     </div>
   </div>
 </section>
@@ -1026,7 +1143,7 @@ footer {
     <h2 id="contact-heading" class="reveal">Ready to build learning<br>that <em>actually works?</em></h2>
     <p class="contact-tagline reveal">Whether you need an e-learning module, a learning strategy, or a collaborator who understands both people and design — I&rsquo;d love to connect.</p>
     <div class="contact-links reveal">
-      <a href="mailto:ancaralucarusu@gmail.com" class="contact-link"><span class="cl-icon">✉️</span> ancaralucarusu@gmail.com</a>
+      <a href="/cdn-cgi/l/email-protection#0b6a65686a796a677e686a797e787e4b6c666a626725686466" class="contact-link"><span class="cl-icon">✉️</span> <span class="__cf_email__" data-cfemail="d6b7b8b5b7a4b7baa3b5b7a4a3a5a396b1bbb7bfbaf8b5b9bb">[email&#160;protected]</span></a>
       <a href="https://linkedin.com/in/ancaralucarusu" target="_blank" rel="noopener" class="contact-link"><span class="cl-icon">💼</span> linkedin.com/in/ancaralucarusu</a>
       <a href="tel:+40749027116" class="contact-link"><span class="cl-icon">📞</span> +40 749 027 116</a>
     </div>
@@ -1034,7 +1151,7 @@ footer {
   <div class="contact-cta-box reveal">
     <p class="ccb-headline">Looking for a designer who <em>truly gets</em> how people learn?</p>
     <p class="ccb-body">I bring something rare to e-learning design: the psychology, the coaching intelligence, and the real-world L&amp;D experience to design learning that changes behaviour — not just knowledge scores.</p>
-    <a href="mailto:ancaralucarusu@gmail.com" class="ccb-action">Send me a message &rarr;</a>
+    <a href="/cdn-cgi/l/email-protection#caaba4a9abb8aba6bfa9abb8bfb9bf8aada7aba3a6e4a9a5a7" class="ccb-action">Send me a message &rarr;</a>
   </div>
 </section>
 
@@ -1047,7 +1164,7 @@ footer {
   <a href="https://linkedin.com/in/ancaralucarusu" class="footer-link" target="_blank" rel="noopener">LinkedIn &rarr;</a>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   // Nav scroll shadow
   const nav = document.getElementById("nav");
   window.addEventListener("scroll", () => {
@@ -1067,14 +1184,4 @@ footer {
   // Scroll reveal — IntersectionObserver
   const reveals = document.querySelectorAll(".reveal");
   const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add("visible"), i * 50);
-        io.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
-  reveals.forEach(el => io.observe(el));
-</script>
-</body>
-</html>
+    entries.forEach((
