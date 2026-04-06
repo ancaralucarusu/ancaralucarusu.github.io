@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anca Tomșa Rusu — E-Learning & Instructional Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun: #FFD166;
+    --coral: #FF6B6B;
+    --teal: #06D6A0;
+    --sky: #74C2E8;
+    --plum: #6B4E9A;
+    --ink: #1A1423;
+    --cream: #FFF8F0;
+    --white: #FFFFFF;
+    --card-bg: rgba(255,255,255,0.75);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'DM Sans', sans-serif; background-color: var(--cream); color: var(--ink); overflow-x: hidden; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.1rem 4rem;
+    background: rgba(255,248,240,0.92); backdrop-filter: blur(14px);
+    border-bottom: 2px solid var(--sun);
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 900; color: var(--plum); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; color: var(--ink); position: relative; padding-bottom: 3px; transition: color 0.2s; }
+  .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: var(--coral); transition: width 0.3s; }
+  .nav-links a:hover { color: var(--coral); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh; display: grid; grid-template-columns: 1.1fr 0.9fr;
+    align-items: center; padding: 8rem 4rem 4rem; position: relative; overflow: hidden;
+    background: var(--cream);
+  }
+  .blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: 0.3; pointer-events: none; animation: drift 12s ease-in-out infinite alternate; }
+  .blob-1 { width: 500px; height: 500px; background: var(--sun); top: -100px; right: 0; }
+  .blob-2 { width: 320px; height: 320px; background: var(--coral); bottom: 40px; right: 250px; animation-delay: 3s; }
+  .blob-3 { width: 260px; height: 260px; background: var(--teal); top: 180px; right: 480px; animation-delay: 1.5s; }
+  .blob-4 { width: 200px; height: 200px; background: var(--sky); bottom: 100px; left: 40px; animation-delay: 4s; }
+  @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(18px,18px) scale(1.07); } }
+
+  .hero-text { position: relative; z-index: 2; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--plum); color: white;
+    font-family: 'Space Mono', monospace; font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.45rem 1.1rem; border-radius: 2rem; margin-bottom: 1.8rem;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-tag .dot { width: 8px; height: 8px; background: var(--teal); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+
+  h1.hero-name { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 4.5vw, 5rem); font-weight: 900; line-height: 1.05; animation: fadeUp 0.8s 0.15s ease both; }
+  h1.hero-name .accent { color: var(--coral); font-style: italic; }
+
+  .hero-tagline { display: inline-block; margin-top: 1.2rem; margin-bottom: 0.5rem; font-family: 'Space Mono', monospace; font-size: 0.85rem; color: var(--teal); letter-spacing: 0.06em; font-weight: 700; animation: fadeUp 0.8s 0.28s ease both; }
+  .hero-subtitle { font-size: 1.05rem; font-weight: 300; color: var(--plum); margin-bottom: 2rem; animation: fadeUp 0.8s 0.35s ease both; }
+  .hero-desc { max-width: 520px; line-height: 1.85; color: #4a4055; font-size: 1rem; animation: fadeUp 0.8s 0.45s ease both; }
+
+  .hero-differentiators { display: flex; flex-direction: column; gap: 0.75rem; margin: 2rem 0 2.5rem; animation: fadeUp 0.8s 0.55s ease both; }
+  .diff-item { display: flex; align-items: center; gap: 0.8rem; font-size: 0.92rem; color: #3a3048; }
+  .diff-icon { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0; }
+  .di-plum  { background: rgba(107,78,154,0.15); }
+  .di-coral { background: rgba(255,107,107,0.15); }
+  .di-teal  { background: rgba(6,214,160,0.15); }
+
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.8s 0.65s ease both; }
+  .btn { padding: 0.9rem 2.2rem; border-radius: 3rem; font-size: 0.9rem; font-weight: 500; text-decoration: none; border: none; transition: transform 0.2s, box-shadow 0.2s; display: inline-block; cursor: pointer; }
+  .btn:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.13); }
+  .btn-primary { background: var(--coral); color: white; }
+  .btn-outline { background: transparent; color: var(--plum); border: 2px solid var(--plum); }
+  .btn-outline:hover { background: var(--plum); color: white; }
+
+  /* ── HERO VISUAL: Photo + floating cards ── */
+  .hero-visual { position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; }
+  .hero-photo-wrap { position: relative; width: 340px; height: 420px; }
+
+  /* Photo circle */
+  .photo-frame {
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 20px 60px rgba(107,78,154,0.25);
+    overflow: hidden;
+    position: absolute; top: 20px; left: 50%; transform: translateX(-50%);
+    z-index: 3;
+    background: linear-gradient(135deg, var(--plum), var(--coral));
+    animation: fadeUp 0.8s 0.4s ease both;
+  }
+  .photo-frame img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center top;
+    display: block;
+  }
+  /* Fallback initials if no photo loads */
+  .photo-initials {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900;
+    color: white; letter-spacing: -2px;
+  }
+
+  /* Floating mini-cards around the photo */
+  .fcard {
+    position: absolute; border-radius: 16px; padding: 0.9rem 1.1rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+    animation: floatCard 6s ease-in-out infinite alternate;
+    z-index: 4;
+  }
+  .fcard-1 { background: var(--sun); bottom: 100px; left: -10px; --r: -4deg; transform: rotate(-4deg); min-width: 130px; animation-delay: 0s; }
+  .fcard-2 { background: white; border: 2.5px solid var(--teal); bottom: 20px; right: -5px; --r: 3deg; transform: rotate(3deg); min-width: 145px; animation-delay: 2s; }
+  .fcard-3 { background: var(--plum); top: 200px; right: -15px; --r: 2deg; transform: rotate(2deg); min-width: 120px; animation-delay: 4s; }
+  @keyframes floatCard { from { transform: rotate(var(--r)) translateY(0px); } to { transform: rotate(var(--r)) translateY(-12px); } }
+  .fcard-label { font-family: 'Space Mono', monospace; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; margin-bottom: 0.3rem; }
+  .fcard-value { font-family: 'Playfair Display', serif; font-size: 0.95rem; font-weight: 700; line-height: 1.3; }
+  .fcard-2 .fcard-label { color: var(--plum); }
+  .fcard-2 .fcard-value { color: var(--ink); font-size: 0.85rem; }
+  .fcard-3 .fcard-label { color: var(--teal); }
+  .fcard-3 .fcard-value { color: white; font-size: 0.85rem; }
+
+  @keyframes fadeUp { from { opacity:0; transform:translateY(26px); } to { opacity:1; transform:translateY(0); } }
+
+  /* ── SHARED ── */
+  section { padding: 6rem 4rem; }
+  .section-label { font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--coral); margin-bottom: 0.6rem; }
+  .section-heading { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 3.5vw, 2.9rem); font-weight: 900; line-height: 1.1; margin-bottom: 3rem; }
+
+  /* ── WHY ME ── */
+  #why { background: var(--ink); color: white; display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: start; }
+  #why .section-heading { color: white; }
+  #why .section-label { color: var(--teal); }
+  .why-intro { font-size: 1.02rem; line-height: 1.85; color: rgba(255,255,255,0.75); margin-bottom: 2rem; }
+  .usp-cards { display: flex; flex-direction: column; gap: 1.2rem; }
+  .usp-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px; padding: 1.6rem 1.8rem; display: flex; gap: 1.2rem; align-items: flex-start; transition: background 0.3s, transform 0.3s; }
+  .usp-card:hover { background: rgba(255,255,255,0.11); transform: translateX(6px); }
+  .usp-icon { font-size: 1.8rem; flex-shrink: 0; margin-top: 0.1rem; }
+  .usp-text h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .usp-text h3 .usp-hi { color: var(--sun); }
+  .usp-text p { font-size: 0.88rem; line-height: 1.75; color: rgba(255,255,255,0.62); }
+
+  /* ── SKILLS ── */
+  #skills { background: white; }
+  .skills-intro { max-width: 680px; font-size: 1rem; line-height: 1.8; color: #5a5068; margin-bottom: 3rem; margin-top: -1.5rem; }
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+  .skill-card { border-radius: 20px; padding: 1.8rem; transition: transform 0.3s, box-shadow 0.3s; }
+  .skill-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,0,0,0.1); }
+  .skill-icon { font-size: 2rem; margin-bottom: 0.9rem; display: block; }
+  .skill-card h3 { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .skill-card p { font-size: 0.86rem; line-height: 1.7; color: #5a5068; }
+  .sc-sun   { background: rgba(255,209,102,0.18); border: 2px solid var(--sun); }
+  .sc-coral { background: rgba(255,107,107,0.1);  border: 2px solid var(--coral); }
+  .sc-teal  { background: rgba(6,214,160,0.1);    border: 2px solid var(--teal); }
+  .sc-sky   { background: rgba(116,194,232,0.15); border: 2px solid var(--sky); }
+  .sc-plum  { background: rgba(107,78,154,0.1);   border: 2px solid var(--plum); }
+  .sc-warm  { background: rgba(255,180,100,0.15); border: 2px solid #FFB464; }
+
+  /* ── BACKGROUND ── */
+  #background { background: var(--cream); }
+  .bg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 3rem; }
+  .bg-card { border-radius: 22px; padding: 2rem; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
+  .bg-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.09); }
+  .bg-card-icon { font-size: 2.8rem; margin-bottom: 1rem; }
+  .bg-card h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.6rem; }
+  .bg-card p { font-size: 0.88rem; line-height: 1.7; color: #5a5068; }
+  .bgc-plum  { background: rgba(107,78,154,0.08); border: 2px solid var(--plum); }
+  .bgc-coral { background: rgba(255,107,107,0.08); border: 2px solid var(--coral); }
+  .bgc-teal  { background: rgba(6,214,160,0.08);  border: 2px solid var(--teal); }
+
+  .tools-section { margin-top: 1rem; }
+  .tools-label { font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--plum); margin-bottom: 1.2rem; }
+  .tools-pills { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+  .tool-pill { padding: 0.5rem 1.2rem; border-radius: 2rem; font-size: 0.84rem; font-weight: 500; background: white; border: 1.5px solid rgba(0,0,0,0.1); color: var(--ink); transition: all 0.2s; }
+  .tool-pill:hover { border-color: var(--coral); color: var(--coral); }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: white; }
+  .exp-intro { max-width: 680px; font-size: 1rem; line-height: 1.8; color: #5a5068; margin-bottom: 3rem; margin-top: -1.5rem; }
+  .timeline { position: relative; padding-left: 2.5rem; }
+  .timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, var(--coral), var(--plum), var(--teal)); border-radius: 2px; }
+  .tl-item { position: relative; margin-bottom: 2.2rem; background: var(--cream); border-radius: 20px; padding: 1.8rem 2rem; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 4px 20px rgba(0,0,0,0.05); transition: transform 0.3s, box-shadow 0.3s; }
+  .tl-item:hover { transform: translateX(8px); box-shadow: 0 10px 36px rgba(0,0,0,0.09); }
+  .tl-dot { position: absolute; left: -2.95rem; top: 1.8rem; width: 14px; height: 14px; border-radius: 50%; border: 3px solid white; }
+  .dot-coral { background: var(--coral); } .dot-plum { background: var(--plum); } .dot-teal { background: var(--teal); } .dot-sky { background: var(--sky); } .dot-sun { background: var(--sun); border-color: var(--cream); }
+  .tl-meta { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+  .tl-year { font-family: 'Space Mono', monospace; font-size: 0.7rem; color: var(--plum); font-weight: 700; background: rgba(107,78,154,0.1); padding: 0.18rem 0.65rem; border-radius: 1rem; }
+  .tl-sector { font-size: 0.76rem; color: rgba(0,0,0,0.4); text-transform: uppercase; letter-spacing: 0.1em; }
+  .tl-role { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .tl-org { font-size: 0.9rem; color: var(--coral); font-weight: 500; margin-bottom: 0.7rem; }
+  .tl-relevance { display: inline-flex; align-items: center; gap: 0.4rem; font-family: 'Space Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; background: rgba(6,214,160,0.15); color: #028a68; padding: 0.22rem 0.7rem; border-radius: 1rem; margin-bottom: 0.8rem; }
+  .tl-desc { font-size: 0.88rem; line-height: 1.75; color: #4a4055; }
+  .tl-bullets { margin-top: 0.5rem; padding-left: 1.1rem; }
+  .tl-bullets li { font-size: 0.87rem; line-height: 1.7; color: #4a4055; margin-bottom: 0.25rem; }
+
+  /* ── CERTIFICATIONS ── */
+  #certifications { background: var(--cream); }
+  .cert-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.3rem; }
+  .cert-card { background: white; border-radius: 18px; padding: 1.7rem; display: flex; align-items: flex-start; gap: 1.1rem; box-shadow: 0 4px 18px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05); transition: transform 0.3s, box-shadow 0.3s; }
+  .cert-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.1); }
+  .cert-badge { width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+  .cb-plum  { background: rgba(107,78,154,0.12); }
+  .cb-teal  { background: rgba(6,214,160,0.12); }
+  .cb-coral { background: rgba(255,107,107,0.12); }
+  .cb-sun   { background: rgba(255,209,102,0.25); }
+  .cb-sky   { background: rgba(116,194,232,0.2); }
+  .cert-info h3 { font-family: 'Playfair Display', serif; font-size: 0.98rem; font-weight: 700; margin-bottom: 0.28rem; }
+  .cert-issuer { font-size: 0.8rem; color: var(--plum); font-weight: 500; margin-bottom: 0.18rem; }
+  .cert-year { font-family: 'Space Mono', monospace; font-size: 0.67rem; color: rgba(0,0,0,0.38); }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--plum); color: white; }
+  #education .section-heading { color: white; }
+  #education .section-label { color: var(--sun); }
+  .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .edu-card { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: 20px; padding: 2rem; transition: background 0.3s, transform 0.3s; }
+  .edu-card:hover { background: rgba(255,255,255,0.17); transform: translateY(-4px); }
+  .edu-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .edu-degree { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--sun); }
+  .edu-field { font-size: 0.9rem; color: rgba(255,255,255,0.88); margin-bottom: 0.3rem; }
+  .edu-inst { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+  .edu-note { font-size: 0.82rem; color: var(--teal); margin-top: 1rem; line-height: 1.6; font-style: italic; }
+
+  /* ── PORTFOLIO ── */
+  #portfolio { background: white; }
+  .portfolio-coming { background: linear-gradient(135deg, rgba(107,78,154,0.08), rgba(6,214,160,0.08)); border: 2px dashed rgba(107,78,154,0.3); border-radius: 28px; padding: 4rem 3rem; text-align: center; }
+  .portfolio-coming .pc-emoji { font-size: 3.5rem; margin-bottom: 1.2rem; }
+  .portfolio-coming h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 0.8rem; color: var(--plum); }
+  .portfolio-coming p { color: #5a5068; font-size: 0.98rem; line-height: 1.75; max-width: 520px; margin: 0 auto 2rem; }
+  .pc-types { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .pc-type { padding: 0.5rem 1.2rem; border-radius: 2rem; font-size: 0.83rem; font-weight: 500; background: white; border: 1.5px solid rgba(107,78,154,0.3); color: var(--plum); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--cream); text-align: center; }
+  #contact .section-heading { margin-bottom: 0.8rem; }
+  .contact-sub { color: #5a5068; font-size: 1.02rem; margin-bottom: 3rem; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+  .contact-methods { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
+  .contact-pill { display: flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.8rem; border-radius: 3rem; font-size: 0.88rem; font-weight: 500; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+  .contact-pill:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+  .cp-email { background: var(--coral); color: white; }
+  .cp-linkedin { background: #0077B5; color: white; }
+  .cp-phone { background: var(--teal); color: var(--ink); font-weight: 600; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--ink); color: rgba(255,255,255,0.38); text-align: center; padding: 2rem; font-family: 'Space Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; }
+  footer span { color: var(--coral); }
+
+  /* ── REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1000px) {
+    #why { grid-template-columns: 1fr; gap: 2rem; }
+    .edu-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { gap: 1rem; }
+    #hero { grid-template-columns: 1fr; padding: 7rem 2rem 3rem; }
+    .hero-visual { display: none; }
+    section { padding: 4rem 2rem; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .bg-grid { grid-template-columns: 1fr; }
+    .cert-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 700px) {
+    .edu-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Anca Tomșa Rusu</div>
+  <ul class="nav-links">
+    <li><a href="#why">Why Me</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#background">Background</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="blob blob-4"></div>
+
+  <div class="hero-text">
+    <div class="hero-tag"><span class="dot"></span> Cluj-Napoca, Romania · Available Remotely</div>
+    <h1 class="hero-name">Anca<br><span class="accent">Tomșa Rusu</span></h1>
+    <span class="hero-tagline">// E-Learning Designer · Instructional Designer</span>
+    <p class="hero-subtitle">Psychology · L&D · Coaching · Now Building Learning Experiences</p>
+    <p class="hero-desc">I design online learning that works — because I've spent 15+ years understanding how people learn, what holds them back, and what truly drives growth. My background in psychology and hands-on L&D and coaching experience means I bring something rare to instructional design: I don't just build courses. I build understanding.</p>
+
+    <div class="hero-differentiators">
+      <div class="diff-item">
+        <div class="diff-icon di-plum">🧠</div>
+        <span><strong>BA & MSc in Psychology</strong> — the science of learning and behaviour change built in from the ground up</span>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon di-coral">🎯</div>
+        <span><strong>15+ years designing L&D from the inside</strong> — I've been the stakeholder, the analyst, and the facilitator</span>
+      </div>
+      <div class="diff-item">
+        <div class="diff-icon di-teal">💬</div>
+        <span><strong>ICF-PCC Certified Coach</strong> — I understand how people change, grow, and sustain new behaviours</span>
+      </div>
+    </div>
+
+    <div class="hero-ctas">
+      <a href="#why" class="btn btn-primary">What Makes Me Different</a>
+      <a href="#contact" class="btn btn-outline">Work With Me</a>
+    </div>
+  </div>
+
+  <!-- PHOTO + floating cards -->
+  <div class="hero-visual">
+    <div class="hero-photo-wrap">
+      <!-- 
+        TO ADD YOUR PHOTO:
+        Replace the .photo-initials div below with:
+        <img src="your-photo.jpg" alt="Anca Tomșa Rusu" />
+        Make sure your photo file is in the same folder as this HTML file.
+      -->
+      <div class="photo-frame">
+        <div class="photo-initials">ATR</div>
+      </div>
+
+      <div class="fcard fcard-1">
+        <div class="fcard-label">Credential</div>
+        <div class="fcard-value">ICF-PCC Coach</div>
+      </div>
+      <div class="fcard fcard-2">
+        <div class="fcard-label">UX Design</div>
+        <div class="fcard-value">Google Certified 2023</div>
+      </div>
+      <div class="fcard fcard-3">
+        <div class="fcard-label">Background</div>
+        <div class="fcard-value">MSc Psychology</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ME -->
+<section id="why">
+  <div class="reveal">
+    <div class="section-label">The Difference</div>
+    <h2 class="section-heading">Why hire an e-learning<br>designer with <em>my</em> background?</h2>
+    <p class="why-intro">Most instructional designers come from one of two places: either education/content, or technology. I come from a third place — the human side. Here's what that means for the learning experiences I create.</p>
+  </div>
+
+  <div class="usp-cards reveal">
+    <div class="usp-card">
+      <div class="usp-icon">🧠</div>
+      <div class="usp-text">
+        <h3><span class="usp-hi">Psychology first.</span> Learning science always.</h3>
+        <p>With a BA and MSc in Psychology, I design with cognitive load theory, motivation, spaced repetition, and behaviour change baked in — not bolted on. I don't just know what engaging looks like, I know why it works.</p>
+      </div>
+    </div>
+    <div class="usp-card">
+      <div class="usp-icon">🎯</div>
+      <div class="usp-text">
+        <h3><span class="usp-hi">I've been the learner, the facilitator, and the stakeholder.</span></h3>
+        <p>Having designed L&D programmes, facilitated workshops, conducted needs analyses, and coached individuals — I understand every angle of a learning challenge. I know what managers need, what learners resist, and what makes content land.</p>
+      </div>
+    </div>
+    <div class="usp-card">
+      <div class="usp-icon">💬</div>
+      <div class="usp-text">
+        <h3><span class="usp-hi">Coaching intelligence.</span> Built into every module.</h3>
+        <p>As an ICF-PCC certified coach, I know how people reflect, build new habits, and get stuck. I use this to design reflection moments, self-assessment activities, and content that actually changes behaviour — not just knowledge scores.</p>
+      </div>
+    </div>
+    <div class="usp-card">
+      <div class="usp-icon">🎨</div>
+      <div class="usp-text">
+        <h3><span class="usp-hi">UX thinking.</span> Learner-centred by design.</h3>
+        <p>Google UX Design certified (2023), I approach course design with the same empathy-driven, iterative thinking as product design — putting the learner experience at the centre of every decision.</p>
+      </div>
+    </div>
+    <div class="usp-card">
+      <div class="usp-icon">🌍</div>
+      <div class="usp-text">
+        <h3><span class="usp-hi">Real-world context.</span> Across sectors and cultures.</h3>
+        <p>IT companies, universities, NGOs, international clients — I've worked across environments where one-size-fits-all never fits. I design e-learning that is contextually sensitive, accessible, and genuinely useful for the audience it's built for.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label reveal">What I Design & Build</div>
+  <h2 class="section-heading reveal">E-Learning <em>Capabilities</em></h2>
+  <p class="skills-intro reveal">My instructional design skills are grounded in real L&D practice. Everything I create is informed by a decade and a half of knowing what learners actually need.</p>
+  <div class="skills-grid">
+    <div class="skill-card sc-plum reveal">
+      <span class="skill-icon">🎨</span>
+      <h3>Instructional Design</h3>
+      <p>ADDIE, SAM, Backward Design — applied from real experience, not just theory. I start with the outcome and design backward to the content.</p>
+    </div>
+    <div class="skill-card sc-teal reveal">
+      <span class="skill-icon">📐</span>
+      <h3>Learning Experience Design</h3>
+      <p>Storyboarding, learning journey mapping, scenario-based design, microlearning, blended learning — designed around how people actually learn.</p>
+    </div>
+    <div class="skill-card sc-coral reveal">
+      <span class="skill-icon">🔍</span>
+      <h3>Needs Analysis</h3>
+      <p>Stakeholder interviews, focus groups, performance gap analysis, skills frameworks — finding the real problem before designing the solution.</p>
+    </div>
+    <div class="skill-card sc-sun reveal">
+      <span class="skill-icon">🧠</span>
+      <h3>Learning Psychology Application</h3>
+      <p>Cognitive load, motivation theory, spaced practice, retrieval, behaviour change — not background knowledge, but working knowledge built over 15 years.</p>
+    </div>
+    <div class="skill-card sc-sky reveal">
+      <span class="skill-icon">📝</span>
+      <h3>Content Writing & Scripting</h3>
+      <p>Writing for e-learning: clear, engaging, learner-centred scripts, assessments, reflection prompts, and scenario dialogues.</p>
+    </div>
+    <div class="skill-card sc-warm reveal">
+      <span class="skill-icon">📊</span>
+      <h3>Evaluation & Impact</h3>
+      <p>Kirkpatrick model, learning analytics, feedback design — I build evaluation in from the start, not as a box to tick at the end.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BACKGROUND -->
+<section id="background">
+  <div class="section-label reveal">Where I Come From</div>
+  <h2 class="section-heading reveal">The background that makes<br>my design <em>different</em>.</h2>
+
+  <div class="bg-grid">
+    <div class="bg-card bgc-plum reveal">
+      <div class="bg-card-icon">🎓</div>
+      <h3>Academic Foundation</h3>
+      <p>BA in Psychology and MSc in Human Resources & Organisational Health from Babeș-Bolyai University — the science of how people think, feel, learn, and change is at the core of everything I build.</p>
+    </div>
+    <div class="bg-card bgc-coral reveal">
+      <div class="bg-card-icon">💼</div>
+      <h3>L&D Professional Experience</h3>
+      <p>Over a decade as an L&D Specialist, Career Manager, Career Counselor, and Coaching Skills Trainer — I've been on the other side of every learning project. I know what works in the real workplace.</p>
+    </div>
+    <div class="bg-card bgc-teal reveal">
+      <div class="bg-card-icon">🌱</div>
+      <h3>Certified Coach & Trainer</h3>
+      <p>ICF-PCC Certified Coach and ANPC Certified Trainer. I've supported hundreds of individuals through growth and change — which deeply shapes how I design learning that actually sticks.</p>
+    </div>
+  </div>
+
+  <div class="tools-section reveal">
+    <div class="tools-label">Tools & Platforms</div>
+    <div class="tools-pills">
+      <span class="tool-pill">Articulate Storyline</span>
+      <span class="tool-pill">Articulate Rise</span>
+      <span class="tool-pill">Canva for Learning</span>
+      <span class="tool-pill">Miro</span>
+      <span class="tool-pill">Jira</span>
+      <span class="tool-pill">Confluence</span>
+      <span class="tool-pill">TFS</span>
+      <span class="tool-pill">SharePoint</span>
+      <span class="tool-pill">LucidChart</span>
+      <span class="tool-pill">Microsoft 365</span>
+      <span class="tool-pill">Google Workspace</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label reveal">Career Journey</div>
+  <h2 class="section-heading reveal">Experience through a<br><em>learning design lens</em>.</h2>
+  <p class="exp-intro reveal">Every role I've held has been a masterclass in what great learning looks like. Here's my journey, read through the eyes of the instructional designer I'm becoming.</p>
+
+  <div class="timeline">
+
+    <!-- Freelance Coach -->
+    <div class="tl-item reveal">
+      <div class="tl-dot dot-coral"></div>
+      <div class="tl-meta"><span class="tl-year">Aug 2025 – Present</span><span class="tl-sector">🌐 Freelance / Coaching Platforms</span></div>
+      <div class="tl-role">Freelance Career & Performance Coach</div>
+      <div class="tl-org">Spring Health · Kyan Health · Speexx & others</div>
+      <div class="tl-relevance">✦ Directly relevant — individual learning journeys</div>
+      <ul class="tl-bullets">
+        <li>Deliver 1:1 coaching focused on career development, performance, and wellbeing for international clients</li>
+        <li>Support individuals in navigating career growth, workplace challenges, and personal development goals</li>
+        <li>Apply structured coaching approaches to improve engagement, resilience, and decision-making</li>
+        <li>Track progress and adapt coaching based on client needs and feedback</li>
+        <li>Work across remote and multicultural environments</li>
+      </ul>
+    </div>
+
+    <!-- Eggs Unimedia — Senior Scrum Master -->
+    <div class="tl-item reveal">
+      <div class="tl-dot dot-plum"></div>
+      <div class="tl-meta"><span class="tl-year">Feb 2023 – Jul 2025</span><span class="tl-sector">🖥 IT Industry</span></div>
+      <div class="tl-role">Senior Scrum Master & Agile Community Co-Lead</div>
+      <div class="tl-org">Eggs Unimedia Romania</div>
+      <div class="tl-relevance">✦ Relevant — learning design for distributed teams</div>
+      <ul class="tl-bullets">
+        <li>Designed and facilitated learning experiences to improve team effectiveness, collaboration, and ways of working across distributed teams</li>
+        <li>Used feedback loops (retrospectives, 1:1s, team health) to identify development needs and improvement opportunities</li>
+        <li>Translated insights into targeted learning interventions — onboarding support, team development, leadership transitions</li>
+        <li>Partnered with managers to strengthen feedback practices, collaboration, and team performance</li>
+        <li>Analysed engagement and team data to inform decisions and track the impact of interventions</li>
+        <li>Built dashboards to support visibility into team health, engagement, and continuous improvement</li>
+        <li>Co-led Communities of Practice, enabling knowledge sharing and continuous learning across teams</li>
+      </ul>
+    </div>
+
+    <!-- World Vision -->
+    <div class="tl-item reveal">
+      <div class="tl-dot dot-sun"></div>
+      <div class="tl-meta"><span class="tl-year">Oct 2024 – Feb 2025</span><span class="tl-sector">🌍 NGO</span></div>
+      <div class="tl-role">Leadership Coach — ICF Ignite Project</div>
+      <div class="tl-org">World Vision International</div>
+      <div class="tl-relevance">✦ Relevant — coaching as structured learning</div>
+      <ul class="tl-bullets">
+        <li>Provided coaching to leaders to support performance, problem-solving, and navigating organisational challenges</li>
+        <li>Facilitated reflection and strengths-based development to improve leadership effectiveness</li>
+      </ul>
+    </div>
+
+    <!-- CoachConnect -->
+    <div class="tl-item reveal">
+      <div class="tl-dot dot-teal"></div>
+      <div class="tl-meta"><span class="tl-year">Oct 2023 – Feb 2024</span><span class="tl-sector">🤝 Training & Coaching</span></div>
+      <div class="tl-role">Coaching Skills Trainer</div>
+      <div class="tl-org">CoachConnect</div>
+      <div class="tl-relevance">✦ Directly relevant — programme design & delivery</div>
+      <ul class="tl-bullets">
+        <li>Designed and delivered training sessions to develop coaching and feedback skills</li>
+        <li>Facilitated group learning to support the application of coaching techniques in practice</li>
+      </ul>
+    </div>
+
+    <!-- BBU Career Counselor -->
+    <div class="tl-item reveal">
+      <div class="tl-dot dot-sky"></div>
+      <div class="tl-meta"><span class="tl-year">Dec 2021 – Nov 2022</span><span class="tl-sector">🎓 Higher Education</span></div>
+      <div class="tl-role">Career Counselor</div>
+      <div class="tl-org">Babeș-Bolyai University</div>
+      <div class="tl-relevance">✦ Relevant — designing for individual growth journeys</div>
+      <ul class="tl-bullets">
+        <li>Designed and delivered career development programs based on stakeholder needs and feedback</li>
+        <li>Facilitated individual and group sessions to support career planning and skill development</li>
+        <li>Gathered and analysed feedback to improve program effectiveness</li>
+      </ul>
+    </div>
+
+    <!-- Yonder -->
+    <div class="tl-item reveal">
+      <div class="tl-dot dot-coral"></div>
+      <div class="tl-meta"><span class="tl-year">Oct 2020 – Dec 2021</span><span class="tl-sector">🖥 IT Industry</span></div>
+      <div class="tl-role">Career Manager (HR Business Partner)</div>
+      <div class="tl-org">Yonder</div>
+      <div class="tl-relevance">✦ Relevant — stakeholder partnering & performance needs</div>
+      <ul class="tl-bullets">
+        <li>Supported employee development and performance processes, including onboarding, promotions, and career progression</li>
+        <li>Acted as a point of contact for employees, providing guidance on employee relations and development topics</li>
+        <li>Conducted regular 1:1s to understand employee needs, gather feedback, and support engagement</li>
+        <li>Partnered with managers to support performance conversations, career development, and team effectiveness</li>
+        <li>Contributed to improving HR processes, increasing clarity and consistency across the employee lifecycle</li>
+      </ul>
+    </div>
+
+    <!-- Evozon — Scrum Master / BA -->
+    <div class="tl-item reveal">
+      <div class="tl-dot dot-sky"></div>
+      <div class="tl-meta"><span class="tl-year">May 2017 – Dec 2019</span><span class="tl-sector">🖥 IT Industry</span></div>
+      <div class="tl-role">Scrum Master | Business Analyst</div>
+      <div class="tl-org">Evozon Systems</div>
+      <div class="tl-relevance">✦ Relevant — facilitation & continuous improvement</div>
+      <ul class="tl-bullets">
+        <li>Facilitated team sessions to improve collaboration, feedback, and performance</li>
+        <li>Supported teams in adopting continuous improvement practices</li>
+        <li>Analysed team dynamics and feedback to identify development opportunities</li>
+      </ul>
+    </div>
+
+    <!-- Evozon — L&D Specialist -->
+    <div class="tl-item reveal">
+      <div class="tl-dot dot-plum"></div>
+      <div class="tl-meta"><span class="tl-year">Feb 2014 – Apr 2017</span><span class="tl-sector">🖥 IT Industry</span></div>
+      <div class="tl-role">Learning & Development Specialist | HR Business Partner</div>
+      <div class="tl-org">Evozon Systems</div>
+      <div class="tl-relevance">✦ Directly relevant — L&D design & delivery at scale</div>
+      <ul class="tl-bullets">
+        <li>Designed and delivered learning and development programs based on business needs and employee feedback</li>
+        <li>Conducted interviews, focus groups, and feedback sessions to identify skill gaps and development needs</li>
+        <li>Built structured learning journeys and Communities of Practice to support employee growth and engagement</li>
+        <li>Collaborated with managers to support development planning and team effectiveness</li>
+        <li>Contributed to improving and standardising HR and L&D processes</li>
+      </ul>
+    </div>
+
+    <!-- BBU Teaching Assistant -->
+    <div class="tl-item reveal">
+      <div class="tl-dot dot-teal"></div>
+      <div class="tl-meta"><span class="tl-year">Aug 2010 – Jul 2013</span><span class="tl-sector">🎓 Higher Education</span></div>
+      <div class="tl-role">Organisational Development Specialist & Teaching Assistant</div>
+      <div class="tl-org">Babeș-Bolyai University</div>
+      <div class="tl-relevance">✦ Relevant — educational design in academic settings</div>
+      <ul class="tl-bullets">
+        <li>Contributed to organisational development initiatives and educational programs</li>
+        <li>Conducted research and facilitated discussions to identify improvement opportunities</li>
+        <li>Synthesised insights to support decision-making and program development</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-label reveal">Portfolio</div>
+  <h2 class="section-heading reveal">Learning experiences<br>I've <em>built & designed</em>.</h2>
+  <div class="portfolio-coming reveal">
+    <div class="pc-emoji">🚧</div>
+    <h3>Portfolio coming soon</h3>
+    <p>I'm currently building out my e-learning portfolio — developing sample modules, storyboards, and case studies that showcase my instructional design approach. Check back soon, or get in touch to discuss how my background could serve your project.</p>
+    <div class="pc-types">
+      <span class="pc-type">📱 Microlearning modules</span>
+      <span class="pc-type">📋 Storyboards</span>
+      <span class="pc-type">🎓 Scenario-based courses</span>
+      <span class="pc-type">🔄 Blended programmes</span>
+      <span class="pc-type">💬 Coaching-led learning</span>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="section-label reveal">Credentials</div>
+  <h2 class="section-heading reveal">Certifications &amp; <em>Accreditations</em></h2>
+  <div class="cert-grid">
+    <div class="cert-card reveal">
+      <div class="cert-badge cb-plum">🏅</div>
+      <div class="cert-info">
+        <h3>Professional Certified Coach (PCC)</h3>
+        <div class="cert-issuer">International Coaching Federation (ICF)</div>
+        <div class="cert-year">2023 – Present</div>
+      </div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-badge cb-sky">🎨</div>
+      <div class="cert-info">
+        <h3>Google UX Design Specialization</h3>
+        <div class="cert-issuer">Google / Coursera</div>
+        <div class="cert-year">2023</div>
+      </div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-badge cb-sun">📜</div>
+      <div class="cert-info">
+        <h3>Certified Trainer</h3>
+        <div class="cert-issuer">ANPC — National Authority for Qualifications</div>
+        <div class="cert-year">2011 – Present</div>
+      </div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-badge cb-teal">🔄</div>
+      <div class="cert-info">
+        <h3>Certified Scrum Master (CSM)</h3>
+        <div class="cert-issuer">Scrum Alliance</div>
+        <div class="cert-year">2023 – 2025</div>
+      </div>
+    </div>
+    <div class="cert-card reveal">
+      <div class="cert-badge cb-coral">🎖</div>
+      <div class="cert-info">
+        <h3>Associate Certified Coach (ACC)</h3>
+        <div class="cert-issuer">International Coaching Federation (ICF)</div>
+        <div class="cert-year">2020 – 2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label reveal">Academic Background</div>
+  <h2 class="section-heading reveal">The psychology that<br>shapes my <em>design thinking</em>.</h2>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-icon">🧠</div>
+      <div class="edu-degree">Master's Degree</div>
+      <div class="edu-field">Human Resources & Organisational Health</div>
+      <div class="edu-inst">Babeș-Bolyai University, Cluj-Napoca</div>
+      <div class="edu-note">Motivation, wellbeing, performance, and behaviour change — the building blocks of every learning experience I create.</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-degree">Bachelor's Degree</div>
+      <div class="edu-field">Psychology</div>
+      <div class="edu-inst">Babeș-Bolyai University, Cluj-Napoca</div>
+      <div class="edu-note">A deep grounding in how people think, learn, and change — the science behind every instructional design decision I make.</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-icon">🎨</div>
+      <div class="edu-degree">UX Design Specialization</div>
+      <div class="edu-field">Google UX Design Certificate</div>
+      <div class="edu-inst">Google / Coursera · 2023</div>
+      <div class="edu-note">Empathy-driven, iterative design thinking applied to learner experience — putting the user at the centre of every course design decision.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label reveal">Let's Talk</div>
+  <h2 class="section-heading reveal">Looking for an instructional<br>designer who <em>truly</em> gets people?</h2>
+  <p class="contact-sub reveal">Whether you need an e-learning module built, a learning journey designed, or a fresh perspective on your L&D strategy — I'd love to explore how we can work together.</p>
+  <div class="contact-methods reveal">
+    <a href="mailto:ancaralucarusu@gmail.com" class="contact-pill cp-email">✉️ ancaralucarusu@gmail.com</a>
+    <a href="https://linkedin.com/in/ancaralucarusu" target="_blank" class="contact-pill cp-linkedin">💼 LinkedIn /ancaralucarusu</a>
+    <a href="tel:+40749027116" class="contact-pill cp-phone">📞 +40 749 027 116</a>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Anca Tomșa Rusu · E-Learning & Instructional Designer · Cluj-Napoca, Romania<br>
+  Designed with <span>♥</span> and a deep belief that great learning changes lives.</p>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => observer.observe(el));
+
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => { if (window.scrollY >= sec.offsetTop - 120) current = sec.getAttribute('id'); });
+    navLinks.forEach(a => { a.style.color = a.getAttribute('href') === '#' + current ? 'var(--coral)' : ''; });
+  });
+</script>
+</body>
+</html>
