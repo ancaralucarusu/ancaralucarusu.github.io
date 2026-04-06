@@ -236,8 +236,8 @@ footer {
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo">Anca <span>Tomșa Rusu</span></a>
-  <a href="index.html#portfolio" class="nav-back">Back to portfolio</a>
+  <a href="https://ancaralucarusu.github.io" class="nav-logo">Anca <span>Tomșa Rusu</span></a>
+  <a href="https://ancaralucarusu.github.io#portfolio" class="nav-back">Back to portfolio</a>
 </nav>
 
 <!-- HERO -->
@@ -253,7 +253,7 @@ footer {
       <div class="meta-item">🧠 <strong>Approach:</strong> Scenario-based, reflective</div>
     </div>
     <div class="hero-actions">
-      <a href="https://share.eu.articulate.com/iaMfXiYXANjaIj-VzVO3K" target="_blank" rel="noopener" class="btn-launch">▶ Launch course</a>
+      <a href="https://ancaralucarusu.github.io/course/content/index.html" target="_blank" rel="noopener" class="btn-launch">▶ Launch course</a>
       <a href="#overview" class="btn-ghost">See design decisions ↓</a>
     </div>
   </div>
@@ -419,8 +419,8 @@ footer {
     <p>Let's talk about what you need and how I can help.</p>
   </div>
   <div class="cta-actions">
-    <a href="/cdn-cgi/l/email-protection#dfbeb1bcbeadbeb3aabcbeadaaacaa9fb8b2beb6b3f1bcb0b2" class="cta-btn">✉ Get in touch</a>
-    <a href="index.html" class="cta-btn-outline">← Back to portfolio</a>
+    <a href="mailto:ancaralucarusu@gmail.com" class="cta-btn">✉ Get in touch</a>
+    <a href="https://ancaralucarusu.github.io" class="cta-btn-outline">← Back to portfolio</a>
   </div>
 </div>
 
@@ -429,9 +429,17 @@ footer {
   <p class="footer-copy">&copy; 2025 · E-Learning & Instructional Designer · Cluj-Napoca</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   const reveals = document.querySelectorAll(".reveal");
   const io = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add("visible"),
+        setTimeout(() => entry.target.classList.add("visible"), i * 50);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
